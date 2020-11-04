@@ -1,0 +1,22 @@
+name: dart_models
+description: Models
+version: 1.0.0
+author: Markus Krebs <markuskrebs93@gmail.com>
+homepage: https://www.movementfam.de
+repository: https://github.com/movementfamily-e-v/models_dart
+
+# For information on the generic Dart part of this file, see the
+# following page: https://dart.dev/tools/pub/pubspec
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+  flutter: ">=1.17.0"
+
+# dependencies
+dependencies:
+  # flutter sdk
+  flutter:
+    sdk: flutter
+
+  # datetime handling
+  intl: ^0.16.1
