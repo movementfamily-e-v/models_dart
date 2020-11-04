@@ -21,7 +21,7 @@ class News extends Data {
       : super(
             id,
             text,
-            "${shortDescription.replaceAll(RegExp(r'([<][/]*[a-z]+[>])'), "")}",
+            "${converter.convert(shortDescription.replaceAll(RegExp(r'([<][/]*[a-z]+[>])'), ""))}",
             name,
             imageId: imageId);
 

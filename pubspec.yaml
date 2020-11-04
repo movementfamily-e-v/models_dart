@@ -18,5 +18,8 @@ dependencies:
   flutter:
     sdk: flutter
 
+  # parsing html code
+  html_unescape: ^1.0.2
+
   # datetime handling
   intl: ^0.16.1

@@ -21,7 +21,7 @@ class Event extends Data {
       : super(
             id,
             text,
-            "${shortDescription.replaceAll(RegExp(r'([<][/]*[a-z]+[>])'), "")} \n \n \tStart: ${DateFormat("dd.MM.yy HH:mm").format(startDate)} \n \tEnde: ${DateFormat("dd.MM.yy HH:mm").format(endDate)}",
+            "${converter.convert(shortDescription.replaceAll(RegExp(r'([<][/]*[a-z]+[>])'), ""))} \n \n \tStart: ${DateFormat("dd.MM.yy HH:mm").format(startDate)} \n \tEnde: ${DateFormat("dd.MM.yy HH:mm").format(endDate)}",
             name,
             imageId: imageId);
 

@@ -1,3 +1,7 @@
+import 'package:html_unescape/html_unescape_small.dart';
+
+final converter = HtmlUnescape();
+
 class Data {
   final int id;
   final String mainText;
