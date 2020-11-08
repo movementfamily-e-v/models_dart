@@ -9,18 +9,18 @@ class Trainer extends Data {
             imageId: imageId);
 
   factory Trainer.fromJson(Map<String, dynamic> json) {
-    final int imageid = json['image_id'] as int;
-    final String shortdescr = (json['short_description'] as String);
-    final String mainText = json['text'] as String;
-    final User user = User.fromJson(json);
-    return Trainer(imageid, user, shortdescr, mainText);
+    final imageid = json['image_id'] as int;
+    final shortdescr = json['short_description'] as String;
+    final mainText = json['text'] as String;
+
+    return Trainer(imageid, User.fromJson(json), shortdescr, mainText);
   }
 
   factory Trainer.fromCreate(
           {int userId,
           DateTime userBirthDate,
-          shortDescr,
-          text,
+          String shortDescr,
+          String text,
           int imageId}) =>
       Trainer(
         imageId,
@@ -33,8 +33,8 @@ class Trainer extends Data {
   factory Trainer.fromUpdate(
           {int userId,
           DateTime userBirthDate,
-          shortDescr,
-          text,
+          String shortDescr,
+          String text,
           int imageId}) =>
       Trainer(
         imageId,
@@ -56,7 +56,7 @@ class Trainer extends Data {
   String toString() =>
       'Trainer Super: ${super.toString()} Id: $id ImageId: $imageId Name: $name ShortDescr: $shortDescription Text: $mainText';
 
-  Map<String, dynamic> toCreateJson() => {
+  Map<String, dynamic> toCreateJson() => <String, dynamic>{
         'id': user.id,
         'image_id': imageId,
         'short_description': shortDescription,

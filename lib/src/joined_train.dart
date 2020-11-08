@@ -57,7 +57,7 @@ class JoinedTrain extends Joined {
   String toString() => 'id: $id Training Id: $trainingId Date: $date';
 
   @override
-  bool operator ==(other) {
+  bool operator ==(dynamic other) {
     if (identical(this, other))
       return true;
     else if (other is JoinedTrain)

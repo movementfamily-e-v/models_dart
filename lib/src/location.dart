@@ -2,7 +2,7 @@ import 'data.dart';
 
 extension ToJson on List<ImageModel> {
   List<Map<String, dynamic>> toJson() {
-    List<Map<String, dynamic>> json = [];
+    final List<Map<String, dynamic>> json = [];
     for (ImageModel img in this) {
       json.add(img.toJson());
     }
@@ -70,7 +70,7 @@ class Location extends Data {
   final int postalCode;
   List<ImageModel> images;
 
-  Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() => <String, dynamic>{
         'name': name,
         'short_description': mainText,
         'latitude': latitude,
@@ -101,7 +101,7 @@ class ImageModel {
   String extraIdentifier;
   int imageId;
 
-  Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() => <String, dynamic>{
         'id': imageId,
         'extra_identifier': extraIdentifier,
         'file_path': imagePath

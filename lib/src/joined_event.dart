@@ -21,7 +21,7 @@ class JoinedEvent extends Joined {
       'id: $id User Id: $userId Event Id: $eventId  Date: $date';
 
   @override
-  bool operator ==(other) {
+  bool operator ==(dynamic other) {
     if (identical(this, other)) return true;
     if (other is JoinedEvent) {
       return other.id == id &&

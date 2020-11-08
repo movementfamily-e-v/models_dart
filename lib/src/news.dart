@@ -14,13 +14,13 @@ class News extends Data {
             imageId: imageId);
 
   factory News.fromJson(Map<String, dynamic> json) {
-    final int id = json['id'] as int;
-    final int image = json['image_id'] as int;
-    final String name = json['name'] as String;
-    final String shortdescr = json['short_description'] as String;
-    final String text = json['text'] as String;
-    final String youtube = json['youtube_url'] as String ?? "";
-    final DateTime created = json['creation_date'] == null
+    final id = json['id'] as int;
+    final image = json['image_id'] as int;
+    final name = json['name'] as String;
+    final shortdescr = json['short_description'] as String;
+    final text = json['text'] as String;
+    final youtube = json['youtube_url'] as String ?? '';
+    final created = json['creation_date'] == null
         ? DateTime.now()
         : DateTime.parse(json['creation_date']);
     final int wpid = json['wordpress_id'] ?? -1;
@@ -35,8 +35,11 @@ class News extends Data {
         youtubeUrl: youtube);
   }
 
+  @override
   final int id;
+  @override
   final int imageId;
+  @override
   final String name;
   final String shortDescription;
   final String text;
@@ -44,7 +47,7 @@ class News extends Data {
   final DateTime createdDate;
   final int wordPressId;
 
-  Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() => <String, dynamic>{
         'name': name,
         'short_description': shortDescription,
         'text': text,

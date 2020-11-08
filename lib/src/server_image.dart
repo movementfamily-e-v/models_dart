@@ -2,9 +2,9 @@ class ServerImage {
   const ServerImage(this.id, this.filePath, this.extraIdentifier);
 
   factory ServerImage.fromJson(Map<String, dynamic> json) {
-    final int id = json['id'] as int;
-    final String path = json['file_path'] as String;
-    final String extra = json['extra_identifier'] as String ?? "";
+    final id = json['id'] as int;
+    final path = json['file_path'] as String;
+    final extra = json['extra_identifier'] as String ?? '';
     return ServerImage(id, path, extra);
   }
 

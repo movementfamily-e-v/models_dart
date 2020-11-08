@@ -14,48 +14,6 @@ extension IdList on List<Trainer> {
 }
 
 class Training extends Data {
-  final int id;
-
-  final int ageFrom;
-
-  final int ageTill;
-
-  final DateTime validTill;
-
-  final DateTime validSince;
-
-  final DateTime timeFrom;
-
-  final DateTime timeTill;
-
-  final bool isAG;
-
-  final String name;
-
-  final String shortDescription;
-
-  final String bodyContext;
-
-  final WeekDay weekDay;
-
-  final List<Trainer> trainers;
-
-  final List<TrainingDate> trainings;
-
-  int get primTrainerId {
-    if (primaryTrainerId != -1) return primaryTrainerId;
-    if (trainers.isNotEmpty) {
-      return trainers.first.id;
-    } else {
-      return -1;
-    }
-  }
-
-  final int primaryTrainerId;
-  final String image;
-
-  final int locationId;
-
   const Training(
       {this.ageFrom,
       this.ageTill,
@@ -108,16 +66,16 @@ class Training extends Data {
 
       final List<Trainer> trainers = [];
 
-      if (trainersJson != null && trainersJson.length > 0) {
-        for (Map<String, dynamic> trainer in trainersJson) {
+      if (trainersJson != null && trainersJson.isNotEmpty) {
+        for (final Map<String, dynamic> trainer in trainersJson) {
           trainers.add(Trainer.fromJson(trainer));
         }
       }
 
       final List<TrainingDate> trainings = [];
       final trainingsJson = (json['data']['trainings'] as List);
-      if (trainingsJson != null && trainingsJson.length > 0) {
-        for (Map<String, dynamic> training in trainingsJson) {
+      if (trainingsJson != null && trainingsJson.isNotEmpty) {
+        for (final Map<String, dynamic> training in trainingsJson) {
           trainings.add(TrainingDate.fromJson(training, timeFrom));
         }
       }
@@ -171,16 +129,16 @@ class Training extends Data {
 
       final List<Trainer> trainers = [];
 
-      if (trainersJson != null && trainersJson.length > 0) {
-        for (Map<String, dynamic> trainer in trainersJson) {
+      if (trainersJson != null && trainersJson.isNotEmpty) {
+        for (final Map<String, dynamic> trainer in trainersJson) {
           trainers.add(Trainer.fromJson(trainer));
         }
       }
 
       final List<TrainingDate> trainings = [];
       final trainingsJson = (json['trainings'] as List);
-      if (trainingsJson != null && trainingsJson.length > 0) {
-        for (Map<String, dynamic> training in trainingsJson) {
+      if (trainingsJson != null && trainingsJson.isNotEmpty) {
+        for (final Map<String, dynamic> training in trainingsJson) {
           trainings.add(TrainingDate.fromJson(training, timeFrom));
         }
       }
@@ -207,32 +165,74 @@ class Training extends Data {
     }
   }
 
-  Map<String, dynamic> toJson() => {
+  final int id;
+
+  final int ageFrom;
+
+  final int ageTill;
+
+  final DateTime validTill;
+
+  final DateTime validSince;
+
+  final DateTime timeFrom;
+
+  final DateTime timeTill;
+
+  final bool isAG;
+
+  final String name;
+
+  final String shortDescription;
+
+  final String bodyContext;
+
+  final WeekDay weekDay;
+
+  final List<Trainer> trainers;
+
+  final List<TrainingDate> trainings;
+
+  final int primaryTrainerId;
+  final String image;
+
+  final int locationId;
+
+  Map<String, dynamic> toJson() => <String, dynamic>{
         'training_base': {
-          'age_from': this.ageFrom,
-          'age_till': this.ageTill,
-          'is_ag': this.isAG,
-          'name': this.name,
-          'short_description': this.shortDescription,
-          'time_from': DateFormat('HH:mm').format(this.timeFrom),
-          'time_till': DateFormat('HH:mm').format(this.timeTill),
-          'valid_till': DateFormat('yyyy-MM-dd').format(this.validTill),
-          'valid_since': DateFormat('yyyy-MM-dd').format(this.validSince),
-          'weekday': this.weekDay.toString().split(".")[1].toUpperCase(),
-          'trainers': this.trainers.toIdList..add(this.primTrainerId),
-          'location_id': this.locationId,
-          'primary_trainer_id': this.primTrainerId
+          'age_from': ageFrom,
+          'age_till': ageTill,
+          'is_ag': isAG,
+          'name': name,
+          'short_description': shortDescription,
+          'time_from': DateFormat('HH:mm').format(timeFrom),
+          'time_till': DateFormat('HH:mm').format(timeTill),
+          'valid_till': DateFormat('yyyy-MM-dd').format(validTill),
+          'valid_since': DateFormat('yyyy-MM-dd').format(validSince),
+          'weekday': weekDay.toString().split('.')[1].toUpperCase(),
+          'trainers': trainers.toIdList..add(primTrainerId),
+          'location_id': locationId,
+          'primary_trainer_id': primTrainerId
         }
       };
 
   bool isTrainingCanceled(DateTime date) {
-    for (TrainingDate train in trainings) {
+    for (final train in trainings) {
       if (train.date == date) {
         return train.isCanceled;
       }
     }
 
     return false;
+  }
+
+  int get primTrainerId {
+    if (primaryTrainerId != -1) return primaryTrainerId;
+    if (trainers.isNotEmpty) {
+      return trainers.first.id;
+    } else {
+      return -1;
+    }
   }
 
   int compareTo(Training b) => timeFrom.compareTo(b.timeFrom);

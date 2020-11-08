@@ -14,21 +14,21 @@ class User extends Data {
       this.loggedIn,
       this.newsLetter,
       this.userRole = UserRole.Guest,
-      this.authKey = "",
-      this.passwort = ""})
+      this.authKey = '',
+      this.passwort = ''})
       : super(id, fullName, email, name);
 
   factory User.fromJson(Map<String, dynamic> json) {
-    final int id = json['id'] as int;
-    final DateTime birthdate = json['birthdate'] == null
+    final id = json['id'] as int;
+    final birthdate = json['birthdate'] == null
         ? DateTime.now()
-        : DateTime.parse(json['birthdate']);
-    final String email = json['email'] as String ?? "";
-    final String fullName = json['full_name'] as String ?? "";
-    final String name = json['name'] as String ?? "";
-    final bool loggedIn = json['logged_in'] as bool ?? false;
-    final bool newsLetter = json['news_letter'] as bool ?? false;
-    final int roleyKey = json['user_role_key_id'] as int ?? 2;
+        : DateTime.parse(json['birthdate'].toString());
+    final email = json['email'] as String ?? '';
+    final fullName = json['full_name'] as String ?? '';
+    final name = json['name'] as String ?? '';
+    final loggedIn = json['logged_in'] as bool ?? false;
+    final newsLetter = json['news_letter'] as bool ?? false;
+    final roleyKey = json['user_role_key_id'] as int ?? 2;
     final UserRole key = roleyKey == 1
         ? UserRole.Admin
         : roleyKey == 2
@@ -36,7 +36,7 @@ class User extends Data {
             : roleyKey == 3
                 ? UserRole.Registered
                 : UserRole.Guest;
-    final String authKey = json['authKey'] ?? "";
+    final authKey = json['authKey']?.toString() ?? '';
     // String pw = json['password'] ?? "";
     return User(
         id: id,
@@ -51,10 +51,16 @@ class User extends Data {
   }
 
   factory User.fromCreate(
-          {DateTime birthdate, email, first, last, passwort, login, role}) =>
+          {DateTime birthdate,
+          String email,
+          String first,
+          String last,
+          String passwort,
+          String login,
+          String role}) =>
       User(
           birthdate: birthdate,
-          fullName: "$first $last",
+          fullName: '$first $last',
           email: email,
           name: login,
           userRole: User.roleFromString(role),
@@ -66,11 +72,11 @@ class User extends Data {
 
   static UserRole roleFromString(String value) {
     final newValue = value.toLowerCase();
-    if (newValue.contains("admin"))
+    if (newValue.contains('admin'))
       return UserRole.Admin;
-    else if (newValue.contains("trainer"))
+    else if (newValue.contains('trainer'))
       return UserRole.Trainer;
-    else if (newValue.contains("member"))
+    else if (newValue.contains('member'))
       return UserRole.Registered;
     else
       return UserRole.Guest;
@@ -88,7 +94,7 @@ class User extends Data {
   final bool newsLetter;
   final String passwort;
 
-  Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() => <String, dynamic>{
         'id': id,
         'birthdate': DateFormat('yyyy-MM-dd').format(birthdate),
         'email': email,
@@ -106,7 +112,7 @@ class User extends Data {
         'authKey': authKey
       };
 
-  Map<String, dynamic> toCreateJson() => {
+  Map<String, dynamic> toCreateJson() => <String, dynamic>{
         'birthdate': DateFormat('yyyy-MM-dd').format(birthdate),
         'email': email,
         'full_name': fullName,

@@ -15,20 +15,20 @@ class Event extends Data {
             imageId: imageId);
 
   factory Event.fromJson(Map<String, dynamic> json) {
-    final int id = json['id'] as int;
-    final int image = json['image_id'] as int;
-    final DateTime start = DateTime.parse(json['start_date']);
-    final DateTime end = DateTime.parse(json['end_date']);
-    final String name = json['name'] as String;
-    final String shortdescr = json['short_description'] as String;
-    final String text = json['text'] as String;
+    final id = json['id'] as int;
+    final image = json['image_id'] as int;
+    final start = DateTime.parse(json['start_date']);
+    final end = DateTime.parse(json['end_date']);
+    final name = json['name'] as String;
+    final shortdescr = json['short_description'] as String;
+    final text = json['text'] as String;
     return Event(
         id: id,
         name: name,
         startDate: start,
         endDate: end,
-        shortDescription: shortdescr.replaceAll("\n", "").replaceAll("\t", ""),
-        text: text.replaceAll("\t", ""),
+        shortDescription: shortdescr.replaceAll('\n', '').replaceAll('\t', ''),
+        text: text.replaceAll('\t', ''),
         imageId: image);
   }
 
@@ -43,7 +43,7 @@ class Event extends Data {
   final String shortDescription;
   final String text;
 
-  Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() => <String, dynamic>{
         'name': name,
         'short_description': shortDescription,
         'text': text,
