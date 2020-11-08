@@ -3,12 +3,13 @@ import 'package:flutter/cupertino.dart';
 import 'joined.dart';
 
 class JoinedTrain extends Joined {
+  JoinedTrain(this.trainingId, this.canceled, this.date, this.ag) : super(-1);
+
   final int trainingId;
   // final List<DateTime> dates;
   final bool canceled;
   final DateTime date;
   final bool ag;
-  JoinedTrain(this.trainingId, this.canceled, this.date, this.ag) : super(-1);
 
   static List<JoinedTrain> fromJson(dynamic json) {
     final List<JoinedTrain> trains = [];
@@ -46,14 +47,14 @@ class JoinedTrain extends Joined {
   }
 
   bool _sameTrainingsDays(DateTime first, DateTime other) =>
-      (first.year == other.year &&
-          first.month == other.month &&
-          first.day == other.day &&
-          first.hour == other.hour &&
-          first.minute == other.minute);
+      first.year == other.year &&
+      first.month == other.month &&
+      first.day == other.day &&
+      first.hour == other.hour &&
+      first.minute == other.minute;
 
   @override
-  String toString() => "id: $id Training Id: $trainingId Date: $date";
+  String toString() => 'id: $id Training Id: $trainingId Date: $date';
 
   @override
   bool operator ==(other) {

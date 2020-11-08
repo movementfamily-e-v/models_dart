@@ -11,17 +11,6 @@ extension ToJson on List<ImageModel> {
 }
 
 class Location extends Data {
-  final int id;
-  final String name;
-  final String mainText;
-  //String imagePath;
-  final int imageId;
-  final double longitude;
-  final double latitude;
-  final String city;
-  final String address;
-  final int postalCode;
-  List<ImageModel> images;
   Location(
       {this.mainText,
       this.id,
@@ -65,16 +54,32 @@ class Location extends Data {
         images: images);
   }
 
+  @override
+  final int id;
+  @override
+  final String name;
+  @override
+  final String mainText;
+  //String imagePath;
+  @override
+  final int imageId;
+  final double longitude;
+  final double latitude;
+  final String city;
+  final String address;
+  final int postalCode;
+  List<ImageModel> images;
+
   Map<String, dynamic> toJson() => {
-        'name': this.name,
-        'short_description': this.mainText,
-        'latitude': this.latitude,
-        'longitude': this.longitude,
-        'city': this.city,
-        'post_code': this.postalCode,
-        'address': this.address,
-        'image_id': this.imageId,
-        'images': this.images.toJson()
+        'name': name,
+        'short_description': mainText,
+        'latitude': latitude,
+        'longitude': longitude,
+        'city': city,
+        'post_code': postalCode,
+        'address': address,
+        'image_id': imageId,
+        'images': images.toJson()
       };
 
   @override
@@ -83,9 +88,6 @@ class Location extends Data {
 }
 
 class ImageModel {
-  String imagePath;
-  String extraIdentifier;
-  int imageId;
   ImageModel({this.imagePath, this.extraIdentifier, this.imageId});
   factory ImageModel.fromJson(Map<String, dynamic> json) {
     final ImageModel image = ImageModel();
@@ -95,9 +97,13 @@ class ImageModel {
     return image;
   }
 
+  String imagePath;
+  String extraIdentifier;
+  int imageId;
+
   Map<String, dynamic> toJson() => {
-        'id': this.imageId,
-        'extra_identifier': this.extraIdentifier,
-        'file_path': this.imagePath
+        'id': imageId,
+        'extra_identifier': extraIdentifier,
+        'file_path': imagePath
       };
 }

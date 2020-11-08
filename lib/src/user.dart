@@ -5,17 +5,6 @@ import 'data.dart';
 enum UserRole { Guest, Registered, Trainer, Admin }
 
 class User extends Data {
-  UserRole userRole;
-  String authKey;
-
-  final String name;
-  final int id;
-  final DateTime birthdate;
-  final String email;
-  final String fullName;
-  final bool loggedIn;
-  final bool newsLetter;
-  final String passwort;
   User(
       {this.id,
       this.birthdate,
@@ -61,55 +50,6 @@ class User extends Data {
         authKey: authKey);
   }
 
-  Map<String, dynamic> toJson() => {
-        'id': this.id,
-        'birthdate': DateFormat('yyyy-MM-dd').format(this.birthdate),
-        'email': this.email,
-        'full_name': this.fullName,
-        'logged_in': this.loggedIn,
-        'news_letter': this.newsLetter,
-        'name': this.name,
-        'user_role_key_id': this.userRole == UserRole.Admin
-            ? 1
-            : this.userRole == UserRole.Trainer
-                ? 2
-                : this.userRole == UserRole.Registered
-                    ? 3
-                    : 4,
-        'authKey': this.authKey
-      };
-
-  Map<String, dynamic> toCreateJson() => {
-        'birthdate': DateFormat('yyyy-MM-dd').format(this.birthdate),
-        'email': this.email,
-        'full_name': this.fullName,
-        'name': this.name,
-        'password': this.passwort,
-        'user_role_key_id': this.userRole == UserRole.Admin
-            ? 1
-            : this.userRole == UserRole.Trainer
-                ? 2
-                : this.userRole == UserRole.Registered
-                    ? 3
-                    : 4,
-        'logged_in': this.loggedIn,
-        'news_letter': this.newsLetter
-      };
-
-  bool get isAuthenticated => this.userRole == UserRole.Registered ||
-          this.userRole == UserRole.Trainer ||
-          this.userRole == UserRole.Admin
-      ? true
-      : false;
-
-  bool get isAdmin => this.userRole == UserRole.Admin ? true : false;
-
-  bool get isTrainer => this.userRole == UserRole.Trainer ? true : false;
-
-  @override
-  String toString() =>
-      "Id: $id authKey: $authKey Birthdate: $birthdate Email $email FullName: $fullName Loggedin: $loggedIn Newsletter: $newsLetter User Role Key: $userRole";
-
   factory User.fromCreate(
           {DateTime birthdate, email, first, last, passwort, login, role}) =>
       User(
@@ -122,17 +62,77 @@ class User extends Data {
           loggedIn: false,
           newsLetter: false);
 
+  factory User.fromCreateTrainer({int userId}) => User(id: userId);
+
   static UserRole roleFromString(String value) {
-    value = value.toLowerCase();
-    if (value.contains("admin"))
+    final newValue = value.toLowerCase();
+    if (newValue.contains("admin"))
       return UserRole.Admin;
-    else if (value.contains("trainer"))
+    else if (newValue.contains("trainer"))
       return UserRole.Trainer;
-    else if (value.contains("member"))
+    else if (newValue.contains("member"))
       return UserRole.Registered;
     else
       return UserRole.Guest;
   }
 
-  factory User.fromCreateTrainer({int userId}) => User(id: userId);
+  UserRole userRole;
+  String authKey;
+
+  final String name;
+  final int id;
+  final DateTime birthdate;
+  final String email;
+  final String fullName;
+  final bool loggedIn;
+  final bool newsLetter;
+  final String passwort;
+
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'birthdate': DateFormat('yyyy-MM-dd').format(birthdate),
+        'email': email,
+        'full_name': fullName,
+        'logged_in': loggedIn,
+        'news_letter': newsLetter,
+        'name': name,
+        'user_role_key_id': userRole == UserRole.Admin
+            ? 1
+            : userRole == UserRole.Trainer
+                ? 2
+                : userRole == UserRole.Registered
+                    ? 3
+                    : 4,
+        'authKey': authKey
+      };
+
+  Map<String, dynamic> toCreateJson() => {
+        'birthdate': DateFormat('yyyy-MM-dd').format(birthdate),
+        'email': email,
+        'full_name': fullName,
+        'name': name,
+        'password': passwort,
+        'user_role_key_id': userRole == UserRole.Admin
+            ? 1
+            : userRole == UserRole.Trainer
+                ? 2
+                : userRole == UserRole.Registered
+                    ? 3
+                    : 4,
+        'logged_in': loggedIn,
+        'news_letter': newsLetter
+      };
+
+  bool get isAuthenticated =>
+      userRole == UserRole.Registered ||
+      userRole == UserRole.Trainer ||
+      userRole == UserRole.Admin;
+
+  bool get isAdmin => userRole == UserRole.Admin;
+
+  bool get isTrainer => userRole == UserRole.Trainer;
+
+  @override
+  String toString() =>
+      'Id: $id authKey: $authKey Birthdate: $birthdate Email $email FullName: $fullName Loggedin: $loggedIn Newsletter: $newsLetter User Role Key: $userRole';
 }

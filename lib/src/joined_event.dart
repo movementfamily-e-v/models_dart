@@ -1,10 +1,6 @@
 import 'joined.dart';
 
 class JoinedEvent extends Joined {
-  final int eventId;
-  final int id;
-  final int userId;
-  DateTime date;
   JoinedEvent(this.eventId, this.id, this.userId) : super(id);
 
   factory JoinedEvent.fromJson(Map<String, dynamic> json) {
@@ -14,19 +10,26 @@ class JoinedEvent extends Joined {
     return JoinedEvent(eventId, id, user);
   }
 
+  final int eventId;
+  @override
+  final int id;
+  final int userId;
+  DateTime date;
+
   @override
   String toString() =>
-      "id: $id User Id: $userId Event Id: $eventId  Date: $date";
+      'id: $id User Id: $userId Event Id: $eventId  Date: $date';
 
   @override
   bool operator ==(other) {
     if (identical(this, other)) return true;
-    if (other is JoinedEvent)
+    if (other is JoinedEvent) {
       return other.id == id &&
           other.eventId == eventId &&
           other.userId == userId;
-    else
+    } else {
       return false;
+    }
   }
 
   @override

@@ -5,7 +5,7 @@ import 'trainer.dart';
 
 extension IdList on List<Trainer> {
   List<int> get toIdList {
-    List<int> ids = [];
+    final List<int> ids = [];
     for (Trainer t in this) {
       ids.add(t.id);
     }
@@ -44,10 +44,11 @@ class Training extends Data {
 
   int get primTrainerId {
     if (primaryTrainerId != -1) return primaryTrainerId;
-    if (trainers.length > 0)
+    if (trainers.isNotEmpty) {
       return trainers.first.id;
-    else
+    } else {
       return -1;
+    }
   }
 
   final int primaryTrainerId;
@@ -234,9 +235,7 @@ class Training extends Data {
     return false;
   }
 
-  compareTo(Training b) {
-    return this.timeFrom.compareTo(b.timeFrom);
-  }
+  int compareTo(Training b) => timeFrom.compareTo(b.timeFrom);
 }
 
 enum WeekDay { Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday }
@@ -316,9 +315,6 @@ extension WeekDayUtility on String {
 }
 
 class TrainingDate {
-  final DateTime date;
-  final bool isCanceled;
-  final List<int> users;
   const TrainingDate(this.date, this.isCanceled, this.users);
 
   factory TrainingDate.fromJson(Map<String, dynamic> json, DateTime timeFrom) {
@@ -328,9 +324,10 @@ class TrainingDate {
             DateTime.now();
     final bool canceled = json['is_canceld'] ?? false;
     final List<int> users = json['users'].cast<int>() ?? [];
-
-    print("trainingsdate from json date $date can");
-
     return TrainingDate(date, canceled, users);
   }
+
+  final DateTime date;
+  final bool isCanceled;
+  final List<int> users;
 }

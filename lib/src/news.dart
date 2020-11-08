@@ -1,14 +1,6 @@
 import 'data.dart';
 
 class News extends Data {
-  final int id;
-  final int imageId;
-  final String name;
-  final String shortDescription;
-  final String text;
-  final String youtubeUrl;
-  final DateTime createdDate;
-  final int wordPressId;
   News(
       {this.wordPressId,
       this.createdDate,
@@ -18,11 +10,7 @@ class News extends Data {
       this.shortDescription,
       this.text,
       this.youtubeUrl})
-      : super(
-            id,
-            text,
-            "${converter.convert(shortDescription.replaceAll(RegExp(r'([<][/]*[a-z]+[>])'), ""))}",
-            name,
+      : super(id, text, removeHtmlContent(shortDescription), name,
             imageId: imageId);
 
   factory News.fromJson(Map<String, dynamic> json) {
@@ -42,22 +30,31 @@ class News extends Data {
         id: id,
         imageId: image,
         name: name,
-        shortDescription: shortdescr.replaceAll("\n", "").replaceAll("\t", ""),
-        text: text.replaceAll("\t", ""),
+        shortDescription: shortdescr.replaceAll('\n', '').replaceAll('\t', ''),
+        text: text.replaceAll('\t', ''),
         youtubeUrl: youtube);
   }
 
+  final int id;
+  final int imageId;
+  final String name;
+  final String shortDescription;
+  final String text;
+  final String youtubeUrl;
+  final DateTime createdDate;
+  final int wordPressId;
+
   Map<String, dynamic> toJson() => {
-        'name': this.name,
-        'short_description': this.shortDescription,
-        'text': this.text,
-        'image_id': this.imageId,
-        'youtube_url': this.youtubeUrl ?? "",
-        'creation_date': this.createdDate ?? "",
-        'wordpress_id': this.wordPressId ?? "",
+        'name': name,
+        'short_description': shortDescription,
+        'text': text,
+        'image_id': imageId,
+        'youtube_url': youtubeUrl ?? '',
+        'creation_date': createdDate ?? '',
+        'wordpress_id': wordPressId ?? '',
       };
 
   @override
   String toString() =>
-      "News Super: ${super.toString()} Id: $id ImageId: $imageId Name: $name ShortDescr: $shortDescription Text: $text creation_date: $createdDate wordpress_id: $wordPressId";
+      'News Super: ${super.toString()} Id: $id ImageId: $imageId Name: $name ShortDescr: $shortDescription Text: $text creation_date: $createdDate wordpress_id: $wordPressId';
 }

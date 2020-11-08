@@ -3,13 +3,6 @@ import 'package:intl/intl.dart';
 import 'data.dart';
 
 class Event extends Data {
-  final int id;
-  final int imageId;
-  final String name;
-  final DateTime startDate;
-  final DateTime endDate;
-  final String shortDescription;
-  final String text;
   Event(
       {this.id,
       this.name,
@@ -18,11 +11,7 @@ class Event extends Data {
       this.shortDescription,
       this.text,
       this.imageId})
-      : super(
-            id,
-            text,
-            "${converter.convert(shortDescription.replaceAll(RegExp(r'([<][/]*[a-z]+[>])'), ""))} \n \n \tStart: ${DateFormat("dd.MM.yy HH:mm").format(startDate)} \n \tEnde: ${DateFormat("dd.MM.yy HH:mm").format(endDate)}",
-            name,
+      : super(id, text, removeHtmlContent(shortDescription), name,
             imageId: imageId);
 
   factory Event.fromJson(Map<String, dynamic> json) {
@@ -43,16 +32,27 @@ class Event extends Data {
         imageId: image);
   }
 
+  @override
+  final int id;
+  @override
+  final int imageId;
+  @override
+  final String name;
+  final DateTime startDate;
+  final DateTime endDate;
+  final String shortDescription;
+  final String text;
+
   Map<String, dynamic> toJson() => {
-        'name': this.name,
-        'short_description': this.shortDescription,
-        'text': this.text,
-        'image_id': this.imageId,
-        'start_date': DateFormat('yyyy-MM-dd HH:mm:ss').format(this.startDate),
-        'end_date': DateFormat('yyyy-MM-dd HH:mm:ss').format(this.endDate),
+        'name': name,
+        'short_description': shortDescription,
+        'text': text,
+        'image_id': imageId,
+        'start_date': DateFormat('yyyy-MM-dd HH:mm:ss').format(startDate),
+        'end_date': DateFormat('yyyy-MM-dd HH:mm:ss').format(endDate),
       };
 
   @override
   String toString() =>
-      "Event Super: ${super.toString()} Id: $id ImageId: $imageId Name: $name ShortDescr: $shortDescription Text: $text";
+      'Event Super: ${super.toString()} Id: $id ImageId: $imageId Name: $name ShortDescr: $shortDescription Text: $text';
 }

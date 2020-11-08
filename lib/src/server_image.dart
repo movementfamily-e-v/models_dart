@@ -1,7 +1,4 @@
 class ServerImage {
-  final int id;
-  final String filePath;
-  final String extraIdentifier;
   const ServerImage(this.id, this.filePath, this.extraIdentifier);
 
   factory ServerImage.fromJson(Map<String, dynamic> json) {
@@ -11,7 +8,11 @@ class ServerImage {
     return ServerImage(id, path, extra);
   }
 
+  final int id;
+  final String filePath;
+  final String extraIdentifier;
+
   @override
   String toString() =>
-      "ServerImage: Id $id FilePath: $filePath ExtraIdentifier: $extraIdentifier";
+      'ServerImage: Id $id FilePath: $filePath ExtraIdentifier: $extraIdentifier';
 }

@@ -4,10 +4,6 @@ import 'data.dart';
 import 'user.dart';
 
 class Trainer extends Data {
-  final int imageId;
-  final User user;
-  final String shortDescription;
-  final String mainText;
   Trainer(this.imageId, this.user, this.shortDescription, this.mainText)
       : super(user.id, mainText, shortDescription, user.fullName,
             imageId: imageId);
@@ -19,10 +15,6 @@ class Trainer extends Data {
     final User user = User.fromJson(json);
     return Trainer(imageid, user, shortdescr, mainText);
   }
-
-  @override
-  String toString() =>
-      "Trainer Super: ${super.toString()} Id: $id ImageId: $imageId Name: $name ShortDescr: $shortDescription Text: $mainText";
 
   factory Trainer.fromCreate(
           {int userId,
@@ -49,13 +41,25 @@ class Trainer extends Data {
         User.fromCreateTrainer(
           userId: userId,
         ),
-        "$shortDescr",
+        '$shortDescr',
         text,
       );
+
+  @override
+  final int imageId;
+  final User user;
+  final String shortDescription;
+  @override
+  final String mainText;
+
+  @override
+  String toString() =>
+      'Trainer Super: ${super.toString()} Id: $id ImageId: $imageId Name: $name ShortDescr: $shortDescription Text: $mainText';
+
   Map<String, dynamic> toCreateJson() => {
-        'id': this.user.id,
-        'image_id': this.imageId,
-        'short_description': this.shortDescription,
-        'text': this.mainText
+        'id': user.id,
+        'image_id': imageId,
+        'short_description': shortDescription,
+        'text': mainText
       };
 }

@@ -3,12 +3,6 @@ import 'package:intl/intl.dart';
 import 'data.dart';
 
 class Todo extends Data {
-  final int id;
-  final int userId;
-  final String todoTask;
-  final String todoDescr;
-  final DateTime dateEnd;
-  bool finished;
   Todo(
       {this.id,
       this.finished,
@@ -34,6 +28,13 @@ class Todo extends Data {
         id: id);
   }
 
+  final int id;
+  final int userId;
+  final String todoTask;
+  final String todoDescr;
+  final DateTime dateEnd;
+  bool finished;
+
   Map<String, dynamic> toJson() => {
         'body_context': "-1",
         'name': todoTask,
@@ -45,5 +46,5 @@ class Todo extends Data {
 
   @override
   String toString() =>
-      "Todo Super: ${super.toString()} Todo finished? $finished Todo Task: $todoTask Todo Desc $todoDescr Date End: $dateEnd UserId: $userId TodoId: $id";
+      'Todo Super: ${super.toString()} Todo finished? $finished Todo Task: $todoTask Todo Desc $todoDescr Date End: $dateEnd UserId: $userId TodoId: $id';
 }
