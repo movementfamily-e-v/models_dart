@@ -19,9 +19,13 @@ dependencies:
     sdk: flutter
 
   # parsing html code
+  # BSD-License
+  # https://pub.dev/packages/html_unescape
   html_unescape: ^1.0.2
 
   # datetime handling
+  # BSD-License
+  # https://pub.dev/packages/intl
   intl: ^0.16.1
 
 # dev dependencies
