@@ -1,3 +1,8 @@
-## [0.0.1] - TODO: Add release date.
+## [1.0.2] - dart_models
 
-* TODO: Describe initial release.
+* flutter dependency removed, preparation for multi platform usage
+* fixed linter issues
+
+## [1.0.0] - initial dart_models package shipped with Android and iOS app
+
+* models package release

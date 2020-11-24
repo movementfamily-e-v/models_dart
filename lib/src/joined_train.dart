@@ -1,5 +1,3 @@
-import 'package:flutter/cupertino.dart';
-
 import 'joined.dart';
 
 class JoinedTrain extends Joined {
@@ -14,7 +12,7 @@ class JoinedTrain extends Joined {
   static List<JoinedTrain> fromJson(dynamic json) {
     final List<JoinedTrain> trains = [];
 
-    print("ALLJOINEDTRAINDATA $json");
+    //print("ALLJOINEDTRAINDATA $json");
     for (Map<String, dynamic> train in json) {
       final int trainingId = train['id'] as int;
       final bool ag = train['is_ag'];
@@ -40,7 +38,7 @@ class JoinedTrain extends Joined {
 
   bool joinedTrain(int trainId, DateTime date) {
     bool isIn = false;
-    debugPrint("CHECK FOR JOINED TRAIN ${_sameTrainingsDays(this.date, date)}");
+    //print('CHECK FOR JOINED TRAIN ${_sameTrainingsDays(this.date, date)}');
     if (trainId == trainingId && _sameTrainingsDays(this.date, date))
       isIn = true;
     return isIn;
@@ -58,12 +56,13 @@ class JoinedTrain extends Joined {
 
   @override
   bool operator ==(dynamic other) {
-    if (identical(this, other))
+    if (identical(this, other)) {
       return true;
-    else if (other is JoinedTrain)
+    } else if (other is JoinedTrain) {
       return other.id == id && other.trainingId == trainingId;
-    else
+    } else {
       return false;
+    }
   }
 
   @override

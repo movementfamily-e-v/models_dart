@@ -5,8 +5,8 @@ import 'trainer.dart';
 
 extension IdList on List<Trainer> {
   List<int> get toIdList {
-    final List<int> ids = [];
-    for (Trainer t in this) {
+    final ids = <int>[];
+    for (final t in this) {
       ids.add(t.id);
     }
     return ids;
@@ -32,17 +32,17 @@ class Training extends Data {
       this.image,
       this.locationId,
       this.trainings})
-      : super(id, shortDescription, bodyContext ?? "", name);
+      : super(id, shortDescription, bodyContext ?? '', name);
 
   factory Training.fromJson(Map<String, dynamic> json) {
     if (json['data'] != null) {
-      final int id = json['data']['id'] as int;
-      final int ageFrom = json['data']['age_from'] as int;
-      final int ageTill = json['data']['age_till'] as int;
-      final DateTime validSince = json['data']['valid_since'] == null
+      final id = json['data']['id'] as int;
+      final ageFrom = json['data']['age_from'] as int;
+      final ageTill = json['data']['age_till'] as int;
+      final validSince = json['data']['valid_since'] == null
           ? DateTime.now()
           : DateTime.parse(json['data']['valid_since']);
-      final DateTime validTill = json['data']['valid_till'] == null
+      final validTill = json['data']['valid_till'] == null
           ? validSince.add(const Duration(days: 365))
           : DateTime.parse(json['data']['valid_till']);
 
@@ -51,20 +51,20 @@ class Training extends Data {
       final timeTill =
           DateTime.parse("0000-00-00 ${json['data']['time_till']}");
 
-      final bool ag = json['data']['is_ag'] as bool;
-      final String bodyContext = json['data']['body_context'] ?? "";
-      final String name = json['data']['name'] ?? "";
-      final String shortdescr = json['data']['short_description'] ?? "";
-      final String weekday = (json['data']['weekday'] as String);
+      final ag = json['data']['is_ag'] as bool;
+      final String bodyContext = json['data']['body_context'] ?? '';
+      final String name = json['data']['name'] ?? '';
+      final String shortdescr = json['data']['short_description'] ?? '';
+      final weekday = json['data']['weekday'] as String;
       final WeekDay wday = weekday.weekDay;
-      final trainersJson = (json['data']['trainers'] as List);
+      final trainersJson = json['data']['trainers'] as List;
 
-      final int locationId = json['data']['location']['id'] as int ?? -1;
+      final locationId = json['data']['location']['id'] as int ?? -1;
       final int primTrainerId = json['data']['primary_trainer'] == null
           ? -1
           : (json['data']['primary_trainer']['id'] as int ?? -1);
 
-      final List<Trainer> trainers = [];
+      final trainers = <Trainer>[];
 
       if (trainersJson != null && trainersJson.isNotEmpty) {
         for (final Map<String, dynamic> trainer in trainersJson) {
@@ -72,14 +72,14 @@ class Training extends Data {
         }
       }
 
-      final List<TrainingDate> trainings = [];
-      final trainingsJson = (json['data']['trainings'] as List);
+      final trainings = <TrainingDate>[];
+      final trainingsJson = json['data']['trainings'] as List;
       if (trainingsJson != null && trainingsJson.isNotEmpty) {
         for (final Map<String, dynamic> training in trainingsJson) {
           trainings.add(TrainingDate.fromJson(training, timeFrom));
         }
       }
-      final String image = json['data']['image'] as String ?? "";
+      final image = json['data']['image'] as String ?? '';
       return Training(
           ageFrom: ageFrom,
           ageTill: ageTill,
@@ -99,35 +99,33 @@ class Training extends Data {
           locationId: locationId,
           trainings: trainings);
     } else {
-      final int id = json['id'] as int;
-      final int ageFrom = json['age_from'] as int;
-      final int ageTill = json['age_till'] as int;
-      final DateTime validSince = json['valid_since'] == null
+      final id = json['id'] as int;
+      final ageFrom = json['age_from'] as int;
+      final ageTill = json['age_till'] as int;
+      final validSince = json['valid_since'] == null
           ? DateTime.now()
           : DateTime.parse(json['valid_since']);
-      final DateTime validTill = json['valid_till'] == null
+      final validTill = json['valid_till'] == null
           ? validSince.add(const Duration(days: 365))
           : DateTime.parse(json['valid_till']);
 
-      final DateTime timeFrom =
-          DateTime.parse("0000-00-00 ${json['time_from']}");
-      final DateTime timeTill =
-          DateTime.parse("0000-00-00 ${json['time_till']}");
+      final timeFrom = DateTime.parse("0000-00-00 ${json['time_from']}");
+      final timeTill = DateTime.parse("0000-00-00 ${json['time_till']}");
 
-      final bool ag = json['is_ag'] as bool;
-      final String bodyContext = json['body_context'] ?? "";
-      final String name = json['name'] ?? "";
-      final String shortdescr = json['short_description'] ?? "";
-      final String weekday = (json['weekday'] as String);
+      final ag = json['is_ag'] as bool;
+      final String bodyContext = json['body_context'] ?? '';
+      final String name = json['name'] ?? '';
+      final String shortdescr = json['short_description'] ?? '';
+      final weekday = json['weekday'] as String;
       final WeekDay wday = weekday.weekDay;
-      final trainersJson = (json['trainers'] as List);
+      final trainersJson = json['trainers'] as List;
 
-      final int locationId = json['location']['id'] as int ?? -1;
-      final int primTrainerId = json['primary_trainer'] == null
+      final locationId = json['location']['id'] as int ?? -1;
+      final primTrainerId = json['primary_trainer'] == null
           ? -1
           : (json['primary_trainer']['id'] as int ?? -1);
 
-      final List<Trainer> trainers = [];
+      final trainers = <Trainer>[];
 
       if (trainersJson != null && trainersJson.isNotEmpty) {
         for (final Map<String, dynamic> trainer in trainersJson) {
@@ -135,14 +133,14 @@ class Training extends Data {
         }
       }
 
-      final List<TrainingDate> trainings = [];
-      final trainingsJson = (json['trainings'] as List);
+      final trainings = <TrainingDate>[];
+      final trainingsJson = json['trainings'] as List;
       if (trainingsJson != null && trainingsJson.isNotEmpty) {
         for (final Map<String, dynamic> training in trainingsJson) {
           trainings.add(TrainingDate.fromJson(training, timeFrom));
         }
       }
-      final String image = json['image'] as String ?? "";
+      final image = json['image'] as String ?? '';
 
       return Training(
           ageFrom: ageFrom,
@@ -165,6 +163,7 @@ class Training extends Data {
     }
   }
 
+  @override
   final int id;
 
   final int ageFrom;
@@ -181,6 +180,7 @@ class Training extends Data {
 
   final bool isAG;
 
+  @override
   final String name;
 
   final String shortDescription;
@@ -300,16 +300,18 @@ extension WeekDayUtils on WeekDay {
 
 extension WeekDayUtility on String {
   WeekDay get weekDay {
-    final current = this.toLowerCase();
-    if (current == "montag" || current == "monday") return WeekDay.Monday;
-    if (current == "dienstag" || current == "tuesday") return WeekDay.Tuesday;
-    if (current == "mittwoch" || current == "wednesday")
+    final current = toLowerCase();
+    if (current == 'montag' || current == 'monday') return WeekDay.Monday;
+    if (current == 'dienstag' || current == 'tuesday') return WeekDay.Tuesday;
+    if (current == 'mittwoch' || current == 'wednesday') {
       return WeekDay.Wednesday;
-    if (current == "donnerstag" || current == "thursday")
+    }
+    if (current == 'donnerstag' || current == 'thursday') {
       return WeekDay.Thursday;
-    if (current == "freitag" || current == "friday") return WeekDay.Friday;
-    if (current == "samstag" || current == "saturday") return WeekDay.Saturday;
-    if (current == "sonntag" || current == "sunday") return WeekDay.Sunday;
+    }
+    if (current == 'freitag' || current == 'friday') return WeekDay.Friday;
+    if (current == 'samstag' || current == 'saturday') return WeekDay.Saturday;
+    if (current == 'sonntag' || current == 'sunday') return WeekDay.Sunday;
     return null;
   }
 }
@@ -318,8 +320,8 @@ class TrainingDate {
   const TrainingDate(this.date, this.isCanceled, this.users);
 
   factory TrainingDate.fromJson(Map<String, dynamic> json, DateTime timeFrom) {
-    final format = DateFormat("HH:mm:ss");
-    final DateTime date =
+    final format = DateFormat('HH:mm:ss');
+    final date =
         DateTime.parse("${json['date'] ?? ""} ${format.format(timeFrom)}") ??
             DateTime.now();
     final bool canceled = json['is_canceld'] ?? false;

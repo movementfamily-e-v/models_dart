@@ -1,23 +1,15 @@
 name: models_dart
-description: Models
-version: 1.0.1
+description: Models package
+version: 1.0.2
 author: Markus Krebs <markuskrebs93@gmail.com>
 homepage: https://www.movementfam.de
 repository: https://github.com/movementfamily-e-v/models_dart
 
-# For information on the generic Dart part of this file, see the
-# following page: https://dart.dev/tools/pub/pubspec
-
 environment:
   sdk: ">=2.7.0 <3.0.0"
-  flutter: ">=1.17.0"
 
 # dependencies
 dependencies:
-  # flutter sdk
-  flutter:
-    sdk: flutter
-
   # parsing html code
   # BSD-License
   # https://pub.dev/packages/html_unescape

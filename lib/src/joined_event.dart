@@ -4,9 +4,9 @@ class JoinedEvent extends Joined {
   JoinedEvent(this.eventId, this.id, this.userId) : super(id);
 
   factory JoinedEvent.fromJson(Map<String, dynamic> json) {
-    final int eventId = json['eventId'] as int;
-    final int id = json['id'] as int;
-    final int user = json['userId'] as int;
+    final eventId = json['eventId'] as int;
+    final id = json['id'] as int;
+    final user = json['userId'] as int;
     return JoinedEvent(eventId, id, user);
   }
 

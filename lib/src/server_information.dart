@@ -1,5 +1,3 @@
-import 'package:flutter/foundation.dart';
-
 class ServerInformation {
   const ServerInformation({this.gitInfo, this.lastUpdate});
 
@@ -15,7 +13,7 @@ class ServerInformation {
 
       update = compiledate.split('.')[0];
     } catch (e) {
-      debugPrint('SERVER INFORMATION ERROR PARSING $e');
+      print('ERROR HAPPENED AT PARSING SERVERINFORMATION \n $e');
     }
     return ServerInformation(gitInfo: git ?? '', lastUpdate: update ?? '');
   }
