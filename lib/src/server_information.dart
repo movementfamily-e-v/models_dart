@@ -1,3 +1,8 @@
+import 'package:hive/hive.dart';
+
+part 'server_information.g.dart';
+
+@HiveType(typeId: 7)
 class ServerInformation {
   const ServerInformation({this.gitInfo, this.lastUpdate});
 
@@ -17,7 +22,8 @@ class ServerInformation {
     }
     return ServerInformation(gitInfo: git ?? '', lastUpdate: update ?? '');
   }
-
+  @HiveField(0)
   final String gitInfo;
+  @HiveField(1)
   final String lastUpdate;
 }

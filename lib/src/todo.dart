@@ -1,7 +1,11 @@
+import 'package:hive/hive.dart';
 import 'package:intl/intl.dart';
 
 import 'data.dart';
 
+part 'todo.g.dart';
+
+@HiveType(typeId: 8)
 class Todo extends Data {
   Todo(
       {this.id,
@@ -27,13 +31,18 @@ class Todo extends Data {
         finished: finished,
         id: id);
   }
-
+  @HiveField(0)
   @override
   final int id;
+  @HiveField(1)
   final int userId;
+  @HiveField(2)
   final String todoTask;
+  @HiveField(3)
   final String todoDescr;
+  @HiveField(4)
   final DateTime dateEnd;
+  @HiveField(5)
   bool finished;
 
   Map<String, dynamic> toJson() => <String, dynamic>{

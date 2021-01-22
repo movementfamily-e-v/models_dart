@@ -1,8 +1,12 @@
+import 'package:hive/hive.dart';
 import 'package:intl/intl.dart';
 
 import 'data.dart';
 import 'user.dart';
 
+part 'trainer.g.dart';
+
+@HiveType(typeId: 9)
 class Trainer extends Data {
   Trainer(this.imageId, this.user, this.shortDescription, this.mainText)
       : super(user.id, mainText, shortDescription, user.fullName,
@@ -44,12 +48,15 @@ class Trainer extends Data {
         '$shortDescr',
         text,
       );
-
+  @HiveField(0)
   @override
   final int imageId;
+  @HiveField(1)
   final User user;
+  @HiveField(2)
   final String shortDescription;
   @override
+  @HiveField(3)
   final String mainText;
 
   @override

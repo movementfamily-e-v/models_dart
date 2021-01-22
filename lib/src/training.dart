@@ -1,7 +1,10 @@
+import 'package:hive/hive.dart';
 import 'package:intl/intl.dart';
 
 import 'data.dart';
 import 'trainer.dart';
+
+part 'training.g.dart';
 
 extension IdList on List<Trainer> {
   List<int> get toIdList {
@@ -13,6 +16,7 @@ extension IdList on List<Trainer> {
   }
 }
 
+@HiveType(typeId: 10)
 class Training extends Data {
   const Training(
       {this.ageFrom,
@@ -162,40 +166,40 @@ class Training extends Data {
           trainings: trainings);
     }
   }
-
+  @HiveField(0)
   @override
   final int id;
-
+  @HiveField(1)
   final int ageFrom;
-
+  @HiveField(2)
   final int ageTill;
-
+  @HiveField(3)
   final DateTime validTill;
-
+  @HiveField(4)
   final DateTime validSince;
-
+  @HiveField(5)
   final DateTime timeFrom;
-
+  @HiveField(6)
   final DateTime timeTill;
-
+  @HiveField(7)
   final bool isAG;
-
+  @HiveField(8)
   @override
   final String name;
-
+  @HiveField(9)
   final String shortDescription;
 
   final String bodyContext;
-
+  @HiveField(11)
   final WeekDay weekDay;
-
+  @HiveField(12)
   final List<Trainer> trainers;
-
+  @HiveField(13)
   final List<TrainingDate> trainings;
 
   final int primaryTrainerId;
   final String image;
-
+  @HiveField(14)
   final int locationId;
 
   Map<String, dynamic> toJson() => <String, dynamic>{

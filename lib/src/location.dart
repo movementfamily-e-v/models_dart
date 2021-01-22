@@ -1,4 +1,8 @@
+import 'package:hive/hive.dart';
+
 import 'data.dart';
+
+part 'location.g.dart';
 
 extension ToJson on List<ImageModel> {
   List<Map<String, dynamic>> toJson() {
@@ -10,6 +14,7 @@ extension ToJson on List<ImageModel> {
   }
 }
 
+@HiveType(typeId: 4)
 class Location extends Data {
   Location(
       {this.mainText,
@@ -53,21 +58,30 @@ class Location extends Data {
         imageId: imageId,
         images: images);
   }
-
+  @HiveField(0)
   @override
   final int id;
+  @HiveField(1)
   @override
   final String name;
+  @HiveField(2)
   @override
   final String mainText;
   //String imagePath;
+  @HiveField(3)
   @override
   final int imageId;
+  @HiveField(4)
   final double longitude;
+  @HiveField(5)
   final double latitude;
+  @HiveField(6)
   final String city;
+  @HiveField(7)
   final String address;
+  @HiveField(8)
   final int postalCode;
+  @HiveField(9)
   List<ImageModel> images;
 
   Map<String, dynamic> toJson() => <String, dynamic>{

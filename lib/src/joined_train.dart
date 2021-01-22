@@ -1,12 +1,20 @@
+import 'package:hive/hive.dart';
+
 import 'joined.dart';
 
+part 'joined_train.g.dart';
+
+@HiveType(typeId: 3)
 class JoinedTrain extends Joined {
   JoinedTrain(this.trainingId, this.canceled, this.date, this.ag) : super(-1);
-
+  @HiveField(0)
   final int trainingId;
   // final List<DateTime> dates;
+  @HiveField(1)
   final bool canceled;
+  @HiveField(2)
   final DateTime date;
+  @HiveField(3)
   final bool ag;
 
   static List<JoinedTrain> fromJson(dynamic json) {

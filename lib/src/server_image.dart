@@ -1,3 +1,8 @@
+import 'package:hive/hive.dart';
+
+part 'server_image.g.dart';
+
+@HiveType(typeId: 6)
 class ServerImage {
   const ServerImage(this.id, this.filePath, this.extraIdentifier);
 
@@ -7,9 +12,11 @@ class ServerImage {
     final extra = json['extra_identifier'] as String ?? '';
     return ServerImage(id, path, extra);
   }
-
+  @HiveField(0)
   final int id;
+  @HiveField(1)
   final String filePath;
+  @HiveField(2)
   final String extraIdentifier;
 
   @override

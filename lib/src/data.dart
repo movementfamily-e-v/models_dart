@@ -7,7 +7,6 @@ String removeHtmlContent(String value) =>
 
 class Data {
   const Data(this.id, this.mainText, this.subText, this.name, {this.imageId});
-
   final int id;
   final String mainText;
   final String subText;

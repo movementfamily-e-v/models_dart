@@ -1,5 +1,10 @@
+import 'package:hive/hive.dart';
+
 import 'joined.dart';
 
+part 'joined_event.g.dart';
+
+@HiveType(typeId: 2)
 class JoinedEvent extends Joined {
   JoinedEvent(this.eventId, this.id, this.userId) : super(id);
 
@@ -9,11 +14,14 @@ class JoinedEvent extends Joined {
     final user = json['userId'] as int;
     return JoinedEvent(eventId, id, user);
   }
-
+  @HiveField(0)
   final int eventId;
+  @HiveField(1)
   @override
   final int id;
+  @HiveField(2)
   final int userId;
+  @HiveField(3)
   DateTime date;
 
   @override

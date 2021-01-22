@@ -1,12 +1,12 @@
 name: models_dart
 description: Models package
-version: 1.0.2
+version: 2.0.0-pre
 author: Markus Krebs <markuskrebs93@gmail.com>
 homepage: https://www.movementfam.de
 repository: https://github.com/movementfamily-e-v/models_dart
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: ">=2.10.0 <3.0.0"
 
 # dependencies
 dependencies:
@@ -20,7 +20,16 @@ dependencies:
   # https://pub.dev/packages/intl
   intl: ^0.16.1
 
+  # hive
+  # lightweight storage
+  # Apache 2 License
+  # https://pub.dev/packages/hive
+  hive: ^1.4.4+1
+
 # dev dependencies
 dev_dependencies:
   # linter rules
   pedantic: ^1.9.2
+  # hive generation
+  hive_generator: ^0.8.2
+  build_runner: ^1.11.0

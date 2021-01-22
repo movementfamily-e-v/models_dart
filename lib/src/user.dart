@@ -1,9 +1,13 @@
+import 'package:hive/hive.dart';
 import 'package:intl/intl.dart';
 
 import 'data.dart';
 
+part 'user.g.dart';
+
 enum UserRole { Guest, Registered, Trainer, Admin }
 
+@HiveType(typeId: 11)
 class User extends Data {
   User(
       {this.id,
@@ -82,16 +86,25 @@ class User extends Data {
       return UserRole.Guest;
   }
 
+  @HiveField(2)
   UserRole userRole;
+  @HiveField(3)
   String authKey;
-
+  @HiveField(1)
   final String name;
+  @HiveField(0)
   final int id;
+  @HiveField(4)
   final DateTime birthdate;
+  @HiveField(5)
   final String email;
+  @HiveField(6)
   final String fullName;
+  @HiveField(7)
   final bool loggedIn;
+  @HiveField(8)
   final bool newsLetter;
+  @HiveField(9)
   final String passwort;
 
   Map<String, dynamic> toJson() => <String, dynamic>{

@@ -1,7 +1,11 @@
+import 'package:hive/hive.dart';
 import 'package:intl/intl.dart';
 
 import 'data.dart';
 
+part 'event.g.dart';
+
+@HiveType(typeId: 1)
 class Event extends Data {
   Event(
       {this.id,
@@ -31,16 +35,22 @@ class Event extends Data {
         text: text.replaceAll('\t', ''),
         imageId: image);
   }
-
+  @HiveField(0)
   @override
   final int id;
+  @HiveField(1)
   @override
   final int imageId;
+  @HiveField(2)
   @override
   final String name;
+  @HiveField(3)
   final DateTime startDate;
+  @HiveField(4)
   final DateTime endDate;
+  @HiveField(5)
   final String shortDescription;
+  @HiveField(6)
   final String text;
 
   Map<String, dynamic> toJson() => <String, dynamic>{
