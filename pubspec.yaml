@@ -18,18 +18,18 @@ dependencies:
   # datetime handling
   # BSD-License
   # https://pub.dev/packages/intl
-  intl: ^0.16.1
+  intl: ^0.17.0
 
   # hive
   # lightweight storage
   # Apache 2 License
   # https://pub.dev/packages/hive
-  hive: ^1.4.4+1
+  hive: ^2.0.0
 
 # dev dependencies
 dev_dependencies:
   # linter rules
-  pedantic: ^1.9.2
+  pedantic: ^1.11.0
   # hive generation
-  hive_generator: ^0.8.2
+  hive_generator: ^1.0.0
   build_runner: ^1.11.0
