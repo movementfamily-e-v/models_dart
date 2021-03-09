@@ -24,7 +24,7 @@ dependencies:
   # lightweight storage
   # Apache 2 License
   # https://pub.dev/packages/hive
-  hive: ^2.0.0
+  hive: ^1.4.4+1
 
 # dev dependencies
 dev_dependencies:
